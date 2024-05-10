@@ -1,0 +1,28 @@
+<section>
+    <p>usuario works!</p>
+    
+    @if (isLoggedIn) {
+        <p> Welcome {{userName}}<p>
+            <img 
+            (click)="greet()"
+            src="https://github.com/codevdone.png"
+            alt="photo"
+            > w
+
+    } @else {
+        <p>  Please LogIn</p>
+    }
+
+    <button (click)="isLoggedIn = true">Log In</button>
+
+    <app-videogame
+    (favEmitterEvent)="getFavGame($event)"
+    username="{{userName}}" > 
+</app-videogame>
+
+@if (favGame !== '') {
+    <p>Tu juego favorito es {{favGame}}</p>
+}
+
+</section>
+

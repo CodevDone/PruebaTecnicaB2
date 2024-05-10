@@ -1,0 +1,13 @@
+Angular
+- npm install -g @angular/cli
+
+// create app
+ng new angular-17-app
+  - Y
+  - CSS
+  - N
+// show component
+ng serve --open
+
+ng generate component usuario
+ng generate component videogame --skip-tests --inline-style --inline-template --dry-run
