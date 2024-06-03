@@ -1,0 +1,9 @@
+@API_HostAddress = http://localhost:5106
+
+POST  {{API_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+    "Email":"Dat.Torres@gmail.com",
+    "Password":"dantorres123."
+}
