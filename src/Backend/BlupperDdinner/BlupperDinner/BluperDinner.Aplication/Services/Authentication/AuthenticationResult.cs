@@ -1,9 +1,8 @@
+using BluperDinner.Domain.Entities;
+
 namespace BluperDinner.Aplication.Services.Authentication;
 
 public record AuthenticationResult(
-    Guid id,
-    string FirstName ,
-    string LastName,
-    string Email,
+    User User,
     string Token 
 );

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BluperDinner.Aplication.Interfaces.Authentication;
 using BluperDinner.Aplication.Interfaces.Services;
+using BluperDinner.Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -24,7 +25,7 @@ namespace BluperDinner.Infrastructure.Authentication
             _jwtSettings = jwtOptions.Value;
         }
 
-        public string GenerateToken(Guid userId, string firstName, string lastName)
+        public string GenerateToken(User user)
         {
             var siginingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
@@ -33,9 +34,9 @@ namespace BluperDinner.Infrastructure.Authentication
 
             var claims = new []
             {
-                new Claim(JwtRegisteredClaimNames.Sub,userId.ToString()),
-                new Claim(JwtRegisteredClaimNames.GivenName,firstName),
-                new Claim(JwtRegisteredClaimNames.FamilyName,lastName),
+                new Claim(JwtRegisteredClaimNames.Sub,user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.GivenName,user.FirstName),
+                new Claim(JwtRegisteredClaimNames.FamilyName,user.LastName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
                
             };
