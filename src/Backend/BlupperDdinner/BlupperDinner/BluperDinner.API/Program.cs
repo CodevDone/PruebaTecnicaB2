@@ -1,14 +1,23 @@
+using BluperDinner.API.Controllers;
+using BluperDinner.API.Filters;
+using BluperDinner.API.MiddleWare;
 using BluperDinner.Aplication;
 using BluperDinner.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    // moved to DependencyInjection.cs
+    // Dependency Injectionm moved to DependencyInjection.cs
     // builder.Services.AddScoped<IAuthenticationService,AuthenticationService>();
     builder.Services
         .AddAplication()
         .AddInfrastructure(builder.Configuration);
     builder.Services.AddControllers();
+
+    builder.Services.AddSingleton<ProblemDetailsFactory,DinnerProblemDetailsFactory>();
+
+    // optional configuration filter
+    // builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
 }
 // Add services to the container.
 
@@ -20,8 +29,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
+    // app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
-    // // app.UseAuthorization();
+    // app.UseAuthorization();
     app.MapControllers();
     app.Run();
 }
