@@ -1,6 +1,8 @@
+Docker Dev Env
+- Install Dev Containers VsCode(Extension) Remote Development (pack)
+- Repository In Container Volume / Reopen In Container
 Angular
 - npm install -g @angular/cli
-
 // create app
 ng new angular-17-app
   - Y
@@ -11,3 +13,66 @@ ng serve --open
 
 ng generate component usuario
 ng generate component videogame --skip-tests --inline-style --inline-template --dry-run
+
+git config --global user.email "daniel.osorio.a@gmail.com"
+git config --global user.name "ElDaniel"
+-------------------------
+BlupperDinner
+dotnet new sln      -o BlupperDinner
+dotnet new webapi   -o BluperDinner.API -use-controllers
+dotnet new classlib -o BluperDinner.Contracts
+dotnet new classlib -o BluperDinner.Infrastructure
+dotnet new classlib -o BluperDinner.Aplication
+dotnet new classlib -o BluperDinner.Domain
+
+dotnet sln add **/*.csproj // is like find . -name "*.csproj"
+
+dotnet add BluperDinner.API/ reference BluperDinner.Contracts/ BluperDinner.Aplication/ 
+dotnet add BluperDinner.Infrastructure/ reference BluperDinner.Aplication/ 
+dotnet add BluperDinner.Aplication/ reference BluperDinner.Domain/ 
+// in theory api is independent than infrastructure but is necessary 
+dotnet add BluperDinner.API/ reference BluperDinner.Infrastructure 
+
+// Extensions
+// install rest client 
+// install C# dev Kit restar vscode
+// install Nuget revese package search
+
+// run API project 
+dotnet run --project BluperDinner.API/
+
+// add package to the application project 
+dotnet add BluperDinner.Aplication/ package Microsoft.Extensions.DependencyInjection.Abstractions
+//--------------------
+// chapter 2
+// install JWT package
+dotnet add BluperDinner.Infrastructure/ package System.IdentityModel.Tokens.Jwt
+
+install extension jwt-decoder
+// install package to work with settings config
+dotnet add BluperDinner.Infrastructure/ package Microsoft.Extensions.Configuration
+dotnet add BluperDinner.Infrastructure/ package Microsoft.Extensions.Options.ConfigurationExtensions
+// donet secrets on BluperDinner.API.csproj
+dotnet user-secrets init --project BluperDinner.API/
+dotnet user-secrets set --project BluperDinner.API/ "JwtSettings:Secret" "super-secret-key-from-user-dotnet-secrets"
+dotnet user-secrets list --project BluperDinner.API/ 
+// debugger 
+vscode debug tab -> create laucher.json 
+".NET Core Attach"
+find BluperDiner.API
+/
+// Errror port alredy in use 
+lsof -i :5106
+kill 78554
+
+// Vs Extensions
+Codeium -> autocomplete like copilot
+GitHub Repositories
+
+// hot reload donte
+dotnet watch --project BluperDinner.API/
+// Chapter 5 
+
+// install package oneof
+dotnet add BluperDinner.Aplication/ package oneof
+
