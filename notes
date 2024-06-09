@@ -1,6 +1,6 @@
 Docker Dev Env
 - Install Dev Containers VsCode(Extension) Remote Development (pack)
-- use extenseion Repository In Container Volume / Reopen In Container
+- use extenseion Clone Repository In Container Volume / Reopen In Container
 Angular
 - npm install -g @angular/cli
 // create app
