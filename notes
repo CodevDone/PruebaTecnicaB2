@@ -33,11 +33,12 @@ dotnet add BluperDinner.Aplication/ reference BluperDinner.Domain/
 // in theory api is independent than infrastructure but is necessary 
 dotnet add BluperDinner.API/ reference BluperDinner.Infrastructure 
 // ------------------------------
-// ----- VsCode Extensions -----
-install rest client 
-install C# dev Kit restar vscode
-install Nuget revese package search
-install extension jwt-decoder
+// ----- VsCode Extensions Install -----
+rest client 
+C# dev Kit restar vscode
+C# Extensions
+Nuget revese package search
+extension jwt-decoder
 Codeium -> autocomplete like copilot
 GitHub Repositories
 // ------------------------------
