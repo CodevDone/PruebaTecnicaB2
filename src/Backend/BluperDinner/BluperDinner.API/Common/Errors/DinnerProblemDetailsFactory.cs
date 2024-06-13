@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using ErrorOr;
+using BluperDinner.API.Common.Http;
 
-namespace BluperDinner.API.Controllers;
+namespace BluperDinner.API.Common.Errors;
 
 /// <summary>
 /// The `DefaultProblemDetailsFactory` is a concrete implementation of the `ProblemDetailsFactory` abstract class.
@@ -103,6 +105,13 @@ public sealed class DinnerProblemDetailsFactory : ProblemDetailsFactory
         if (traceId != null)
         {
             problemDetails.Extensions["traceId"] = traceId;
+        }
+
+        var errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
+
+        if (errors is not  null)
+        {
+            problemDetails.Extensions.Add("errorsCode",errors.Select(e => e.Code));
         }
 
         problemDetails.Extensions["customProperty"] = "customValue";

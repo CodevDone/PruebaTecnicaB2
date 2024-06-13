@@ -1,4 +1,4 @@
-using BluperDinner.API.Controllers;
+using BluperDinner.API.Common.Errors;
 using BluperDinner.Aplication;
 using BluperDinner.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Infrastructure;

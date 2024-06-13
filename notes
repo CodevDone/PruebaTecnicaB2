@@ -69,8 +69,15 @@ kill 78554
 
 // hot reload donte
 dotnet watch --project BluperDinner.API/
+
 // Chapter 5 
 
 // install package oneof
 dotnet add BluperDinner.Aplication/ package oneof
+dotnet remove BluperDinner.Aplication/ package oneof
 
+
+dotnet add BluperDinner.Aplication/ package fluentResults
+dotnet remove BluperDinner.Aplication/ package fluentResults
+
+dotnet add BluperDinner.Domain/ package ErrorOr

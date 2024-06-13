@@ -1,7 +1,9 @@
 using BluperDinner.Aplication.Interfaces.Authentication;
 using BluperDinner.Aplication.Interfaces.Persistence;
 using BluperDinner.Domain.Entities;
-using BluperDinner.Aplication.Common.Errors;
+using BluperDinner.Aplication.Common;
+using ErrorOr;
+using BluperDinner.Domain.Common;
 
 namespace BluperDinner.Aplication.Services.Authentication;
 
@@ -15,18 +17,18 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Login(string email, string password)
+    public ErrorOr<AuthenticationResult> Login(string email, string password)
     {
         // 1. Validate the user exist
-        User? user = _userRepository.GetUserByEmail(email);
-        if (user is null)
+          
+        if (_userRepository.GetUserByEmail(email) is not User user)
         {
-            throw new Exception("User does not exist.");
+            return Errors.Authentication.InvalidCredentials;
         }
         // 2. Validate the password is correct 
         if (user.Pasword != password)
         {
-            throw new Exception("Invalid password.");
+            return Errors.Authentication.InvalidCredentials;;
         }
         // 3. Create  JWT token
 
@@ -38,21 +40,22 @@ public class AuthenticationService : IAuthenticationService
         );
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+
+    public ErrorOr<AuthenticationResult> Register(string FirstName, string LastName, string Email, string Password)
     {
-        // 1 validate the user doesn't exist
-        if (_userRepository.GetUserByEmail(email) is not null)
+         // 1 validate the user doesn't exist
+        if (_userRepository.GetUserByEmail(Email) is not null)
         {
-            throw new DuplicateEmailExceptions();
+            return  Errors.User.DuplicateEmail;
         }
 
         // 2 Create User (generate unique Id & persist)
 
         var user = new User{
-            FirstName = firstName,
-            LastName = lastName,
-            Email = email,
-            Pasword = password
+            FirstName = FirstName,
+            LastName = LastName,
+            Email = Email,
+            Pasword = Password
         };
         _userRepository.Add(user);
 
