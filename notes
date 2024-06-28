@@ -14,7 +14,7 @@ ng serve --open
 ng generate component usuario
 ng generate component videogame --skip-tests --inline-style --inline-template --dry-run
 
-git config --global user.email "daniel.osorio.a@gmail.com"
+git config --global user.email "daniel.osorio.a@gmail.com" ||
 git config --global user.name "ElDaniel"
 // --------------------------------------------------
 BlupperDinner
@@ -42,10 +42,8 @@ extension jwt-decoder
 Codeium -> autocomplete like copilot
 GitHub Repositories
 // ------------------------------
-
 // run API project 
 dotnet run --project BluperDinner.API/
-
 // add package to the application project 
 dotnet add BluperDinner.Aplication/ package Microsoft.Extensions.DependencyInjection.Abstractions
 //--------------------
@@ -67,12 +65,10 @@ vscode debug tab -> create laucher.json  -> select ".NET Core Attach" find Blupe
 // Errror port alredy in use 
 lsof -i :5106
 kill 78554
-
 // hot reload donte
 dotnet watch --project BluperDinner.API/
 
 // Chapter 5 
-
 // install package oneof
 dotnet add BluperDinner.Aplication/ package oneof
 dotnet remove BluperDinner.Aplication/ package oneof
