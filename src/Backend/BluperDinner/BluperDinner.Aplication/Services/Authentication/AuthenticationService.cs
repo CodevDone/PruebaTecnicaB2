@@ -51,12 +51,14 @@ public class AuthenticationService : IAuthenticationService
 
         // 2 Create User (generate unique Id & persist)
 
-        var user = new User{
-            FirstName = FirstName,
-            LastName = LastName,
-            Email = Email,
-            Pasword = Password
-        };
+        var user =  User.Create(
+            FirstName : FirstName,
+            LastName : LastName,
+            Email : Email,
+            Password : Password
+        );
+        
+       
         _userRepository.Add(user);
 
         // 3 create jwt token

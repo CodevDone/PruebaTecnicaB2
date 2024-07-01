@@ -78,3 +78,5 @@ dotnet add BluperDinner.Aplication/ package fluentResults
 dotnet remove BluperDinner.Aplication/ package fluentResults
 
 dotnet add BluperDinner.Domain/ package ErrorOr
+----
+dotnet add BluperDinner.API/ package Swashbuckle.AspNetCore --version 6.6.0
