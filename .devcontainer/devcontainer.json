@@ -35,7 +35,8 @@
 				"ms-mssql.mssql",
 				"ms-dotnettools.csdevkit",
 				"kreativ-software.csharpextensions",
-				"Codeium.codeium"
+				"Codeium.codeium",
+				"humao.rest-client"
 			]
 		}
 	},

@@ -7,8 +7,9 @@ namespace BluperDinner.API.Controllers
 {
     public class ErrorsController : ControllerBase
     {
-        [Route("/error")]
-        public IActionResult Error()
+        [Route("/error/error")]
+        [HttpGet]
+        public IActionResult ErrorError()
         {
             // return View("Error!");
             Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
